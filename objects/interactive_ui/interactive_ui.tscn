@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvgo4aa20d6si"]
+
+[ext_resource type="Script" path="res://objects/interactive_ui/interactive_ui.gd" id="1_oyn1u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15olt"]
+content_margin_left = 6.0
+content_margin_right = 6.0
+bg_color = Color(0.392157, 0.392157, 0.392157, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="InteractiveUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oyn1u")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="Center" type="CenterContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Panel" type="PanelContainer" parent="Margin/Center"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Margin/Center/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="Margin/Center/Panel/Margin"]
+layout_mode = 2
+
+[node name="Info" type="Label" parent="Margin/Center/Panel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Информация"
+horizontal_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Center/Panel/Margin/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Desc" type="Label" parent="Margin/Center/Panel/Margin/VBox/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Взаимодействовать"
+
+[node name="Icon" type="PanelContainer" parent="Margin/Center/Panel/Margin/VBox/HBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_15olt")
+
+[node name="Key" type="Label" parent="Margin/Center/Panel/Margin/VBox/HBox/Icon"]
+layout_mode = 2
+text = "E"

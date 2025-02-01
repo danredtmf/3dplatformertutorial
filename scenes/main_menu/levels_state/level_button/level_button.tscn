@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dapu1442uikyc"]
+
+[ext_resource type="Script" path="res://scenes/main_menu/levels_state/level_button/level_button.gd" id="1_asd4d"]
+
+[node name="LevelButton" type="Button"]
+modulate = Color(1, 0.588414, 0.425271, 1)
+custom_minimum_size = Vector2(100, 100)
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 24
+text = "000000"
+script = ExtResource("1_asd4d")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,112 @@
+[gd_scene load_steps=11 format=3 uid="uid://fmxgrmxpi7cl"]
+
+[ext_resource type="PackedScene" uid="uid://c0wdrcjmtyuhk" path="res://objects/player/player.tscn" id="1_aucfs"]
+[ext_resource type="PackedScene" uid="uid://ughg806f34u6" path="res://objects/collectable_item/collectable_item.tscn" id="2_nvxno"]
+[ext_resource type="PackedScene" uid="uid://4j3mdleqwgfk" path="res://objects/c_items_counter/c_items_counter.tscn" id="3_soe4p"]
+[ext_resource type="PackedScene" uid="uid://cvr2ccs6atxhg" path="res://objects/c_items_counter_ui/c_items_counter_ui.tscn" id="4_60tkb"]
+[ext_resource type="PackedScene" uid="uid://c32smy7tgnmpt" path="res://objects/jump_helper_base/jump_helper_base.tscn" id="5_syqq7"]
+[ext_resource type="PackedScene" uid="uid://div8scucxlb88" path="res://objects/portal/portal.tscn" id="6_013qi"]
+[ext_resource type="PackedScene" uid="uid://yrkf0ykayv6d" path="res://scenes/pause_game_ui/pause_game_ui.tscn" id="7_1bwad"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6mv07"]
+
+[sub_resource type="Sky" id="Sky_lfo85"]
+sky_material = SubResource("ProceduralSkyMaterial_6mv07")
+
+[sub_resource type="Environment" id="Environment_x3f2s"]
+background_mode = 2
+sky = SubResource("Sky_lfo85")
+
+[node name="Level" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="Floor" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(26, 1, 26)
+
+[node name="Wall" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -12.5)
+size = Vector3(26, 5, 1)
+
+[node name="Wall2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 12.5)
+size = Vector3(26, 5, 1)
+
+[node name="Wall3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.5, 2, 0)
+size = Vector3(26, 5, 1)
+
+[node name="Wall4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.5, 2, 0)
+size = Vector3(26, 5, 1)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.920464, 0.390828, 0, -0.390828, 0.920464, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x3f2s")
+
+[node name="Player" parent="." instance=ExtResource("1_aucfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CollectableItem" parent="." instance=ExtResource("2_nvxno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4)
+
+[node name="CollectableItem2" parent="." instance=ExtResource("2_nvxno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0)
+
+[node name="CollectableItem3" parent="." instance=ExtResource("2_nvxno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4)
+
+[node name="CollectableItem4" parent="." instance=ExtResource("2_nvxno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0)
+
+[node name="CItemsCounter" parent="." instance=ExtResource("3_soe4p")]
+
+[node name="CItemsCounterUI" parent="." instance=ExtResource("4_60tkb")]
+
+[node name="JumpHelperBase" parent="." instance=ExtResource("5_syqq7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -6)
+jump_mod = 1.5
+color = Color(0, 0, 0, 1)
+
+[node name="JumpHelperBase2" parent="." instance=ExtResource("5_syqq7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 3, -1)
+jump_mod = 3.0
+color = Color(1, 0, 1, 1)
+
+[node name="JumpHelperBase3" parent="." instance=ExtResource("5_syqq7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 9, 2)
+jump_mod = 10.0
+color = Color(1, 0, 0, 1)
+
+[node name="Portal" parent="." node_paths=PackedStringArray("next_portal") instance=ExtResource("6_013qi")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 3.5, -4.3)
+next_portal = NodePath("../Portal2")
+
+[node name="Portal2" parent="." node_paths=PackedStringArray("next_portal") instance=ExtResource("6_013qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 25.5, 0.2)
+next_portal = NodePath("../Portal")
+
+[node name="Portal3" parent="." instance=ExtResource("6_013qi")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9, 25.5, 0.2)
+is_end = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -6)
+use_collision = true
+size = Vector3(5, 1, 5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -6)
+use_collision = true
+size = Vector3(5, 1, 5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24, 0)
+use_collision = true
+size = Vector3(20, 1, 5)
+
+[node name="PauseGameUI" parent="." instance=ExtResource("7_1bwad")]

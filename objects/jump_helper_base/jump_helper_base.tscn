@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://c32smy7tgnmpt"]
+
+[ext_resource type="Script" path="res://objects/jump_helper_base/jump_helper_base.gd" id="1_872ul"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mhnaj"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0ewf"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.501961)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_53ojq"]
+points = PackedVector3Array(-1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, -1, -1, 1, -1, 1, -1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xd8p7"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3tffn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ek0gt"]
+size = Vector3(2.1, 2.1, 2.1)
+
+[node name="JumpHelperBase" type="Area3D"]
+script = ExtResource("1_872ul")
+
+[node name="MeshFront" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_mhnaj")
+surface_material_override/0 = SubResource("StandardMaterial3D_u0ewf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshFront"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshFront/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_53ojq")
+
+[node name="MeshBack" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_xd8p7")
+surface_material_override/0 = SubResource("StandardMaterial3D_3tffn")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ek0gt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1yj4me6ta8ob"]
+
+[ext_resource type="Script" path="res://scenes/main_menu/about_state/about_state.gd" id="1_u3q0c"]
+[ext_resource type="Texture2D" uid="uid://bhgx5gngn7ia2" path="res://icon.svg" id="2_jrdsa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d55po"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_3n0vq"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ngbe"]
+font_size = 32
+
+[node name="AboutState" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u3q0c")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="StateName" type="Label" parent="Margin/VBox"]
+layout_mode = 2
+text = "Об Игре"
+label_settings = SubResource("LabelSettings_d55po")
+horizontal_alignment = 1
+
+[node name="Content" type="VBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Margin/VBox/Content"]
+layout_mode = 2
+texture = ExtResource("2_jrdsa")
+stretch_mode = 5
+
+[node name="EngineName" type="Label" parent="Margin/VBox/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Godot Engine ..."
+label_settings = SubResource("LabelSettings_3n0vq")
+horizontal_alignment = 1
+
+[node name="Author" type="Label" parent="Margin/VBox/Content"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Работа студента X группы Y"
+label_settings = SubResource("LabelSettings_8ngbe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Back" type="Button" parent="Margin/VBox/Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Назад"
+
+[connection signal="pressed" from="Margin/VBox/Buttons/Back" to="." method="_on_back_pressed"]

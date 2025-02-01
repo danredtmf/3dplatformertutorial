@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ughg806f34u6"]
+
+[ext_resource type="Script" path="res://objects/collectable_item/collectable_item.gd" id="1_tag60"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rww84"]
+size = Vector3(0.4, 0.5, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lv8nf"]
+albedo_color = Color(1, 0.380392, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7d7d0"]
+
+[node name="CollectableItem" type="Area3D" groups=["CollectableItem"]]
+script = ExtResource("1_tag60")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_rww84")
+surface_material_override/0 = SubResource("StandardMaterial3D_lv8nf")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7d7d0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

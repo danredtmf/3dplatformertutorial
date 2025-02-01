@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://div8scucxlb88"]
+
+[ext_resource type="Script" path="res://objects/portal/portal.gd" id="1_qih3q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_trkm7"]
+size = Vector3(0.1, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_coixh"]
+albedo_color = Color(3.56168e-06, 0.582465, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x6v8i"]
+size = Vector3(0.2, 2.1, 1.1)
+
+[node name="Portal" type="Area3D"]
+script = ExtResource("1_qih3q")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_trkm7")
+surface_material_override/0 = SubResource("StandardMaterial3D_coixh")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_x6v8i")
+
+[node name="ForwardPos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="ForwardLookPos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4.37114e-08)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
