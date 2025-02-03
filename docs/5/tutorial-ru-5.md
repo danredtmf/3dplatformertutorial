@@ -32,18 +32,24 @@
 > Добавить типы `ENTITY` и `TRIGGER` в `enum Types`, добавить соответствующие сигналы
 2. Изменение кода `PlayerRayCast`;
 > Учитывать `InteractiveItem` только с типом `ENTITY`
-3. Изменение кода `CItemsCounter`;
+3. Развилка
+> Выбор между тем, нужно ли переписывать код у `CItemsCounter`
+4. Изменение кода `CItemsCounter`;
 > Убрать использование `CollectableItem`, учёт `InteractiveItem` только с id `coin`, прослушка сигнала `EventBus.interactive_item_interacted` только для id `coin`
-4. Изменения на уровне;
-> Убрать `CollectableItem`, замена на `InteractiveItem`
-5. Создание `PlayerSpeedModule`;
-6. Создание `EffectSpeed`;
+5. Изменения на уровне;
+> Убрать `CollectableItem`, замена на `InteractiveItem`, при условии, что пользователь документации захотел переписывать `CItemsCounter`
+6. Создание `PlayerSpeedModule`;
+7. Создание `EffectSpeed`;
 
 ## Дополнение кода `InteractiveItem`
 
 Текст
 
 ## Изменение кода `PlayerRayCast`
+
+Текст
+
+## Развилка
 
 Текст
 
